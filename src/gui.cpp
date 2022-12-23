@@ -28,7 +28,7 @@ Gui::Gui(Game* _game, const int width, const int height): game(_game){
 		throw guiException("Could not open font!", TTFFAIL);
 	}
 
-	if(!(window = SDL_CreateWindow("Chess Engine",
+	if(!(window = SDL_CreateWindow("WnV",
 					SDL_WINDOWPOS_UNDEFINED,
 					SDL_WINDOWPOS_UNDEFINED,
 					width,
