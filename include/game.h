@@ -15,12 +15,12 @@ enum {NORTH, SOUTH, EAST, WEST};
 */
 class Game {
 	private:
-		int width;
+		int width; // WIDTH AND HEIGHT ARE STORED 
 		int height;
-		std::unordered_map<Point, Object*> map;
+		std::unordered_map<Point, Object*> map; // STORES ALL OBJECTS THAT ARE PLACED ON MAP
 
 		bool timeOfDay = DAY;
-		int werewolves = 0;
+		int werewolves = 0; // MEMBERS OF TEAMS
 		int vampires = 0;
 
 		Player* player;
