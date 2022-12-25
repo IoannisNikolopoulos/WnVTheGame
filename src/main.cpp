@@ -49,7 +49,7 @@ std::string getTeam() {
 SDL_Color bg = BLACK;
 
 int main(int argc, char* argv[]) {
-	srand(time(NULL));
+	srand(time(NULL)); // SRAND IS USED TO MAKE SURE GENERATION OF GAME IS RANDOM
 
 	int width = 16;
 	int height = 9;
@@ -59,15 +59,15 @@ int main(int argc, char* argv[]) {
 	height = getHeight();
 	playerTeam = getTeam();
 
-	Game* game = new Game(width, height, playerTeam);
+	Game* game = new Game(width, height, playerTeam); // GAME CLASS CONTAINS ALL MECHANISMS 
 
-	Gui* gui = nullptr;
+	Gui* gui = nullptr; // STARTS AS NULL DUE TO PRESENTLY UNDEFINED NATURE
 	try {
 		gui = new Gui(game, 856, 480);
 	} catch (guiException& e) {
 		std::cout << e.what();
 
-		switch (e.getType()) {
+		switch (e.getType()) { // CHECK FOR ERRORS DURING GUI CREATION
 			case SDLFAIL:
 				std::cout << " SDL_Error: " << SDL_GetError();
 				break;
@@ -80,14 +80,14 @@ int main(int argc, char* argv[]) {
 		return EXIT_FAILURE;
 	}
 
-	while (RUNNING) {
+	while (RUNNING) { // GAME RUNS AS LONG AS WHILE IS RUNNING
 		gui->events();
 
 		if (!PAUSED) {
-			gui->prepareScene(bg);
+			gui->prepareScene(bg); // RENDERS BLACK BACKGROUND
 
-			int result = game->update();
-
+			int result = game->update(); // UPDATES ONE TICK OF GAME PER SECOND
+											// RESULT CONCLUDES GAME DATA, DECIDING WINNER
 			if (result == WEREWOLVES) {
 				std::cout << "Werewolves win" << std::endl;
 				RUNNING = false;
@@ -96,9 +96,9 @@ int main(int argc, char* argv[]) {
 				RUNNING = false;
 			}
 
-			gui->drawGame();
+			gui->drawGame(); // RESPONSIBLE FOR PRINTING MAP AND ENTITIES ON SCREEN
 
-			gui->presentScene();
+			gui->presentScene(); // SAME AS DRAW GAME
 		}
 
 		SDL_Delay(80);
