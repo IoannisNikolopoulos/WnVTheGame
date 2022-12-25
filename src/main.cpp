@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
 			gui->presentScene(); // SAME AS DRAW GAME
 		}
 
-		SDL_Delay(80);
+		SDL_Delay(80); // GAME DELAY SO IT DOESN'T RUN TOO FAST
 	}
 
 	return EXIT_SUCCESS;
