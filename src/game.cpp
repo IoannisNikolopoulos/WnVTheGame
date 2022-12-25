@@ -1,4 +1,4 @@
-#include "game.cpp"
+#include "game.h"
 
 #include <stdexcept>
 
@@ -7,8 +7,8 @@ Point Game::getEmptyPos() {
 		Find empty spot in game map
 	*/
 
-	Point pos;
-	do {
+	Point pos; // RANDOM POSITION IS CHOSEN, IF IT ISN'T OCCUPIED... 
+	do {       // ...PROGRAM PROCEEDS, OTHERWISE IT FINDS A NEW ONE
 		pos = Point(rand()%width, rand()%height);
 	} while (map.find(pos) != map.end());
 	return pos;
@@ -23,8 +23,8 @@ Game::Game(int _width, int _height, std::string _playerTeam):
 	int limit = (width*height)/15;
 
 	// Place terrain
-	for (int i=0; i<limit*3/2; i++) {
-		Point terrainPos = getEmptyPos();
+	for (int i=0; i<limit*3/2; i++) { // IF POSITION EMPTY PROGRAM PLACES...
+		Point terrainPos = getEmptyPos(); // ...A TREE OR WATER
 
 		if (rand()%2) {
 			map[terrainPos] = new Tree(terrainPos);
@@ -38,16 +38,16 @@ Game::Game(int _width, int _height, std::string _playerTeam):
 		Point vampPoint = getEmptyPos();
 		Point werePoint = getEmptyPos();
 
-		Vampire* vampire = new Vampire(vampPoint);
-		map[vampPoint] = vampire;
-		vampires++;
+		Vampire* vampire = new Vampire(vampPoint); // ENTITY IS CREATED...
+		map[vampPoint] = vampire;					// ...AND PLACED ON THE MAP
+		vampires++; // TEAM MEMBERS ARE ADDED
 
 		Werewolf* werewolf = new Werewolf(werePoint);
 		map[werePoint] = werewolf;
 		werewolves++;
 	}
 
-	// Place player
+	// Place player on the map
 	Point playerPos = getEmptyPos();
 	player = new Player(playerPos, playerTeam);
 	map[playerPos] = player;
@@ -201,7 +201,7 @@ void Game::interactEntities() {
 	for (auto& it : map) {
 		Object* o = it.second;
 
-		if (!isObjectNPC(o)) continue;
+		if (!isObjectNPC(o)) continue; 
 
 		Entity* e = (Entity*) o;
 
