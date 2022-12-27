@@ -116,6 +116,8 @@ SDL_Color treeColor = {3, 150, 47};
 SDL_Color vampireColor = {255, 0, 0};
 SDL_Color werewolfColor = {145, 5, 255};
 SDL_Color playerColor = {0, 255, 0};
+SDL_Color medkitColor = {0, 255, 0};
+
 
 void Gui::drawGame(void){
 	std::unordered_map<Point, Object*> objects = game->getObjects();
@@ -183,6 +185,10 @@ void Gui::drawGame(void){
 				color = playerColor;
 				text = game->getPlayerTeam().substr(0, 1);
 			}
+		//	else if (typeid(*o)) == typeid(MedKit){
+		//		color = medkitColor;
+		//		text = "M";
+		//	}
 
 			drawText(text, objectRect, color);
 		}
