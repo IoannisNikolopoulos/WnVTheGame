@@ -267,4 +267,10 @@ void Game::print() {
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
+		
+	// Print time of day
+	if (!timeOfDay){
+		std::cout << "Night";
+	}
+	std::cout << "Day";
 }
